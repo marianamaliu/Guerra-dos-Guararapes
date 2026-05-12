@@ -1,2 +1,8 @@
-# Guerra-dos-Guararapes
-Guerra dos Guararapes ambienta batalha de Pernambuco contra holandeses no século XVII. Comando do exército local utiliza ícones como Zumbi e Cangaceiro contra artilharia invasora. Mecânica central exige aplicar Merge Sort ou Quick Sort para organizar combatentes. Ordenação estratégica de valores numéricos define formação ideal no front.
+## Guerra Dos Guararapes
+- Esta fase é só documentação, sem código. O formulário da Entrega 01 pede itens específicos — aqui está o que vocês devem escrever em cada campo:
+- Vibe recifense escolhida: História e Recife Antigo / Batalha dos Guararapes
+- Nome do jogo: Batalha dos Guararapes Remastered
+- Introdução: Um Recife alternativo, século XVII. Os holandeses retornam com uma frota reforçada para retomar o que perderam. O povo pernambucano convoca seus maiores ícones — do folclore, do carnaval, da resistência — para defender a terra mais uma vez.
+- Objetivo: Destruir a caravela holandesa antes que o exército invasor atravesse a praia e tome o Forte das Cinco Pontas. O jogador organiza sua fila de batalha usando Merge Sort para posicionar os personagens estrategicamente e vencer os duelos.
+- Estrutura de dados: Lista duplamente encadeada, representando a fila de batalha. Justificativa: permite inserção e remoção eficiente em qualquer posição, reposicionamento durante a ordenação sem cópia de dados, e travessia nos dois sentidos — o que é essencial para as animações de Merge Sort e para a mecânica de duelo sequencial.
+- Algoritmo de ordenação: Merge Sort iterativo sobre lista encadeada. Justificativa técnica: é o algoritmo de ordenação mais adequado para listas ligadas (sem acesso aleatório), tem complexidade O(n log n) garantida e é estável. Justificativa de jogo: cada passo do merge reposiciona fisicamente os soldados na tela, tornando o algoritmo visível e jogável.
