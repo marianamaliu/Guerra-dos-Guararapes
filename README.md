@@ -1,5 +1,4 @@
 ## Guerra Dos Guararapes
-- Esta fase é só documentação, sem código. O formulário da Entrega 01 pede itens específicos — aqui está o que vocês devem escrever em cada campo:
 - Vibe recifense escolhida: História e Recife Antigo / Batalha dos Guararapes
 - Nome do jogo: Batalha dos Guararapes Remastered
 - Introdução: Um Recife alternativo, século XVII. Os holandeses retornam com uma frota reforçada para retomar o que perderam. O povo pernambucano convoca seus maiores ícones — do folclore, do carnaval, da resistência — para defender a terra mais uma vez.
