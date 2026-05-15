@@ -3,9 +3,9 @@
 
 typedef enum GameScreen
 {
-    TITLE = 0,
+    MENU,
+    LORE,
     GAMEPLAY,
-    INITIALIZE,
     LOSING,
     WINNING
 } GameScreen;

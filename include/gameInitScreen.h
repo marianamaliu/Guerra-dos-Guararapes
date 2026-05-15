@@ -2,9 +2,8 @@
 #define SCREEN_H
 
 #include "game.h"
-#include "player.h" 
+#include "scene.h"
 #include "enemy.h"  
-#include "item.h"   
 #include "raylib.h"
 
 typedef struct {
@@ -24,5 +23,11 @@ screenState iniciandoGame();
  * @brief Inicializa a janela do Raylib com a resolucao do monitor.
  */
 void InitWindow_REFACTOR();
+
+void drawMenu(screenState *Sstate);
+void drawLore(screenState *Sstate);
+void drawGameplay(screenState *Sstate);
+void draWinning(screenState *Sstate);
+void drawLosing(screenState *Sstate);
 
 #endif
