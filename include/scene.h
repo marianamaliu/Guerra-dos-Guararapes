@@ -7,7 +7,7 @@ typedef struct Scene
 {
     Image collision_image;
     Vector2 offsetMap;
-    Texture2D mapTexture[3];
+    Texture2D mapTexture[5];
     GameScreen currentScreen;
     float mapScale;
 } Scene;

@@ -16,7 +16,13 @@ screen iniciandoGame() {
     InitWindow(w, h, "Bguararapes");
     SetTargetFPS(60);
 
-    configs.screenSizes = (Vector2){ GetScreenWidth(), GetScreenHeight() };
+    // load all scene textures
+    addScenes(&configs.map);
+    
+    // set default map to MENU
+    configs.map.currentScreen = MENU;
+
+    configs.screenSizes = (Vector2){ (float)GetScreenWidth(), (float)GetScreenHeight() };
 
     return configs;
 }
@@ -29,9 +35,11 @@ void drawMenu(screen *Sstate){
     const char *instrucao = "Pressione ENTER para JOGAR";
     int fontSizeInstrucao = 20;
 
-    // 2. Centralização da Instrução:
-    int xInstrucao = Sstate->screenSizes.x / 2 - MeasureText(instrucao, fontSizeInstrucao) / 2;
-    int yInstrucao = Sstate->screenSizes.y / 2;
+    // 2. Centralização da Instrução (calcula no momento do desenho)
+    int screenW = GetScreenWidth();
+    int screenH = GetScreenHeight();
+    int xInstrucao = screenW / 2 - MeasureText(instrucao, fontSizeInstrucao) / 2;
+    int yInstrucao = screenH / 2;
 
     DrawText(instrucao, xInstrucao, yInstrucao, fontSizeInstrucao, BLACK);
     if (IsKeyPressed(KEY_ENTER))
@@ -55,9 +63,11 @@ void drawGameplay(screen *Sstate){
     const char *instrucao = "Pressione ENTER para ganhar, DELETE para perder";
     int fontSizeInstrucao = 20;
 
-    // 2. Centralização da Instrução:
-    int xInstrucao = Sstate->screenSizes.x / 2 - MeasureText(instrucao, fontSizeInstrucao) / 2;
-    int yInstrucao = Sstate->screenSizes.y / 2;
+    // 2. Centralização da Instrução (calcula no momento do desenho)
+    int screenW = GetScreenWidth();
+    int screenH = GetScreenHeight();
+    int xInstrucao = screenW / 2 - MeasureText(instrucao, fontSizeInstrucao) / 2;
+    int yInstrucao = screenH / 2;
 
     DrawText(instrucao, xInstrucao, yInstrucao, fontSizeInstrucao, BLACK);
     if (IsKeyPressed(KEY_ENTER))
@@ -69,7 +79,7 @@ void drawGameplay(screen *Sstate){
     else if (IsKeyPressed(KEY_DELETE))
     {
         Sstate->currentScreen = LOSING;
-        Sstate->map.currentScreen = WINNING;
+        Sstate->map.currentScreen = LOSING;
     }
 
     EndDrawing();
@@ -81,8 +91,10 @@ void draWinning(screen *Sstate){
     const char *instrucao = "ENTER para voltar para o menu principal";
     int fontSizeInstrucao = 20;
 
-    int xInstrucao = Sstate->screenSizes.x / 2 - MeasureText(instrucao, fontSizeInstrucao) / 2;
-    int yInstrucao = Sstate->screenSizes.y / 2;
+    int screenW = GetScreenWidth();
+    int screenH = GetScreenHeight();
+    int xInstrucao = screenW / 2 - MeasureText(instrucao, fontSizeInstrucao) / 2;
+    int yInstrucao = screenH / 2;
 
     DrawText(instrucao, xInstrucao, yInstrucao, fontSizeInstrucao, BLACK);
     if (IsKeyPressed(KEY_ENTER))
@@ -100,8 +112,10 @@ void drawLosing(screen *Sstate){
     const char *instrucao = "ENTER para voltar para o menu principal";
     int fontSizeInstrucao = 20;
 
-    int xInstrucao = Sstate->screenSizes.x / 2 - MeasureText(instrucao, fontSizeInstrucao) / 2;
-    int yInstrucao = Sstate->screenSizes.y / 2;
+    int screenW = GetScreenWidth();
+    int screenH = GetScreenHeight();
+    int xInstrucao = screenW / 2 - MeasureText(instrucao, fontSizeInstrucao) / 2;
+    int yInstrucao = screenH / 2;
 
     DrawText(instrucao, xInstrucao, yInstrucao, fontSizeInstrucao, BLACK);
     if (IsKeyPressed(KEY_ENTER))

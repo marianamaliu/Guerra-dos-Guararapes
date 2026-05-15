@@ -14,6 +14,8 @@ esse arquivo define a incialização dos mapas e texturas de uma cena
 void addScenes(Scene *scene)
 {
     scene->mapTexture[0] = LoadTexture("assets/image.png");
+    // fallback for second screen (no specific asset provided)
+    scene->mapTexture[1] = LoadTexture("assets/image.png");
     scene->mapTexture[2] = LoadTexture("assets/island.animated.gif");
     scene->mapTexture[3] = LoadTexture("assets/tela_ganhou.png");
     scene->mapTexture[4] = LoadTexture("assets/tela_perdeu.png");
