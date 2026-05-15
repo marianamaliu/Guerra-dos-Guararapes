@@ -19,7 +19,7 @@ int main(void)
     // Variáveis do usuário (Nomes mantidos)
     timerState timeState= newTimerState();
 
-    //screenState screenState = iniciandoGame();
+    //screen screen = iniciandoGame();
     entityState entityState = iniciandoEntidades();
 
     while (!WindowShouldClose())
@@ -28,13 +28,13 @@ int main(void)
         // 1. BLOCO DE ATUALIZAÇÃO (UPDATE)
         // =========================================================================
 
-        switch (screenState.currentScreen)
+        switch (screen.currentScreen)
         {
 
         case INITIALIZE:
         {
             {
-                InitScene(&screenState.map1, "assets/Cenario_medieval.png");
+                InitScene(&screen.map, "assets/Cenario_medieval.png");
                 entityState.isInitiated = iniciandoInimigos(&entityState);
 
                 // Inicio timer
@@ -42,14 +42,14 @@ int main(void)
                 timeState.scoreCalculated = false;
 
                 TraceLog(LOG_INFO, "Inimigos inicializados.");
-                screenState.currentScreen = TITLE;
+                screen.currentScreen = TITLE;
             }
         }
         break;
 
         case GAMEPLAY:
         {
-            UpdatePlayer(&entityState.hero, &screenState.map1);
+            UpdatePlayer(&entityState.hero, &screen.map);
             UpdateEnemy(&entityState.enemy1, GetFrameTime());
             UpdateEnemy(&entityState.enemy2, GetFrameTime());
             UpdateEnemy(&entityState.enemy3, GetFrameTime());
@@ -76,7 +76,7 @@ int main(void)
                 if (CheckItemCollision(&entityState.exit, entityState.hero.rectangleHitbox, &entityState.hero))
                 {
                     TraceLog(LOG_INFO, "JOGO: Jogador coletou a saída e venceu o jogo!");
-                    screenState.currentScreen = WINNING;
+                    screen.currentScreen = WINNING;
                 }
             }
 
@@ -87,7 +87,7 @@ int main(void)
                 CheckPlayerEnemyCollision(&entityState.hero, &entityState.enemy4))
             {
                 TraceLog(LOG_INFO, "Player colidiu com inimigo!");
-                screenState.currentScreen = LOSING;
+                screen.currentScreen = LOSING;
             }
         }
         break;
@@ -135,7 +135,7 @@ int main(void)
         ClearBackground(RAYWHITE); // Limpa a tela
 
         // Aqui temos a renderização de cada tela do jogo de fato
-        switch (screenState.currentScreen)
+        switch (screen.currentScreen)
         {
         case TITLE:
         {
@@ -161,19 +161,19 @@ int main(void)
             DrawText(instrucao, xInstrucao, yInstrucao, fontSizeInstrucao, BLACK);
             if (IsKeyDown(KEY_ENTER))
             {
-                screenState.currentScreen = GAMEPLAY;
+                screen.currentScreen = GAMEPLAY;
             }
         }
         break;
 
         case GAMEPLAY:
         {
-            DrawScene(&screenState.map1);
+            DrawScene(&screen.map);
             drawPlayer(&entityState.hero);
-            DrawEnemy(&entityState.enemy1, screenState.showDebug);
-            DrawEnemy(&entityState.enemy2, screenState.showDebug);
-            DrawEnemy(&entityState.enemy3, screenState.showDebug);
-            DrawEnemy(&entityState.enemy4, screenState.showDebug);
+            DrawEnemy(&entityState.enemy1, screen.showDebug);
+            DrawEnemy(&entityState.enemy2, screen.showDebug);
+            DrawEnemy(&entityState.enemy3, screen.showDebug);
+            DrawEnemy(&entityState.enemy4, screen.showDebug);
             DrawItem(&entityState.keyItem1);
             DrawItem(&entityState.keyItem2);
             DrawItem(&entityState.keyItem3);
@@ -262,7 +262,7 @@ int main(void)
         // 2. BLOCO DE UNLOAD/FECHAR: apenas quando o jogo acabar
         // =========================================================================
 
-        if (screenState.currentScreen == LOSING || screenState.currentScreen == WINNING)
+        if (screen.currentScreen == LOSING || screen.currentScreen == WINNING)
         {
             if (IsKeyPressed(KEY_DELETE))
             {
@@ -272,10 +272,10 @@ int main(void)
             if (IsKeyPressed(KEY_P))
             {
                 // Faz unload dos assets antes de voltar para o Título
-                UnloadScene(&screenState.map1);
+                UnloadScene(&screen.map);
                 unloadPlayer(&entityState.hero);
                 // Unload de inimigos, itens, etc. (adicione se necessário)
-                screenState.currentScreen = TITLE;
+                screen.currentScreen = TITLE;
             }
         }
     } // Fim do while (!WindowShouldClose())

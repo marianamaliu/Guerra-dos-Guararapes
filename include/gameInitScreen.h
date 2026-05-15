@@ -8,26 +8,26 @@
 
 typedef struct {
     GameScreen currentScreen;
-    Scene map1;
+    Scene map;
     int cliques;
     bool showDebug;
-} screenState;
+} screen;
 
 /**
  * @brief Inicializa o estado do jogo e a tela.
- * @return screenState inicializada.
+ * @return screen inicializada.
  */
-screenState iniciandoGame();
+screen iniciandoGame();
 
 /**
  * @brief Inicializa a janela do Raylib com a resolucao do monitor.
  */
 void InitWindow_REFACTOR();
 
-void drawMenu(screenState *Sstate);
-void drawLore(screenState *Sstate);
-void drawGameplay(screenState *Sstate);
-void draWinning(screenState *Sstate);
-void drawLosing(screenState *Sstate);
+void drawMenu(screen *Sstate);
+void drawLore(screen *Sstate);
+void drawGameplay(screen *Sstate);
+void draWinning(screen *Sstate);
+void drawLosing(screen *Sstate);
 
 #endif

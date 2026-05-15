@@ -4,52 +4,52 @@
 #include <stdio.h>
 #include "gameInitScreen.h"
 
-screenState iniciandoGame() {
-    screenState state;
-    state.currentScreen = MENU;
-    state.cliques = 1;
-    state.showDebug = true;
+screen iniciandoGame() {
+    screen configs;
+    configs.currentScreen = MENU;
+    configs.showDebug = true;
 
-    int WINDOW_WIDTH = GetMonitorWidth(0);
-    int WINDOW_HEIGHT = GetMonitorHeight(0);
+    configs.screenSizes = (Vector2){GetScreenWidth(), GetScreenHeight()};
 
-    InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "blinky");
+    InitWindow(configs.screenSizes.x, configs.screenSizes.y, "Bguararapes");
     SetTargetFPS(60);
 
-    return state;
+    return configs;
 }
 
-void drawMenu(screenState *Sstate){
+void drawMenu(screen *Sstate){
     BeginDrawing();
-    DrawScene(&Sstate->map1);
+    DrawScene(&Sstate->map);
 
     const char *instrucao = "Pressione ENTER para JOGAR";
     int fontSizeInstrucao = 20;
 
     // 2. Centralização da Instrução:
-    int xInstrucao = Sstate->map1.offsetMap.x / 2 - MeasureText(instrucao, fontSizeInstrucao) / 2;
-    int yInstrucao = Sstate->map1.offsetMap.y / 2;
+    int xInstrucao = Sstate->map.screenSizes.x / 2 - MeasureText(instrucao, fontSizeInstrucao) / 2;
+    int yInstrucao = Sstate->map.screenSizes.y / 2;
 
     DrawText(instrucao, xInstrucao, yInstrucao, fontSizeInstrucao, BLACK);
     if (IsKeyDown(KEY_ENTER))
     {
-        Sstate.currentScreen = GAMEPLAY;
+        Sstate->currentScreen = GAMEPLAY;
     }
     
     EndDrawing();
 }
 
-void drawLore(screenState *Sstate){
+void drawLore(screen *Sstate){
     printf("lore desenhada");
 }
 
-void drawGameplay(screenState *Sstate){
-    printf("gameplay desenhada");
+void drawGameplay(screen *Sstate){
+    BeginDrawing();
+    DrawScene(&Sstate->map);
+    EndDrawing();
 }
-void draWinning(screenState *Sstate){
+void draWinning(screen *Sstate){
     printf("draWinning");
 }
-void drawLosing(screenState *Sstate){
+void drawLosing(screen *Sstate){
     printf("draw losing");
 }
 

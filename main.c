@@ -15,43 +15,42 @@
 
 int main(int argc, char const *argv[])
 {
-    screenState screenState = iniciandoGame();
+    screen screen = iniciandoGame();
 
     // iniciando telas
-    InitScene(&screenState.map1, "assets/image.png");
+    InitScene(&screen.map, "assets/image.png");
 
     while (!WindowShouldClose())
     {
-        switch (screenState.currentScreen){
+        switch (screen.currentScreen){
 
             case MENU:
             {
-                drawMenu(&screenState);
+                drawMenu(&screen);
             }
             break;
 
-
             case LORE:
             {
-                drawLore(&screenState);
+                drawLore(&screen);
             }
             break;
 
             case GAMEPLAY:
             {
-                drawGameplay(&screenState);
+                drawGameplay(&screen);
             }
             break;
 
             case WINNING:
             {
-                draWinning(&screenState);
+                draWinning(&screen);
             }
             break;
 
             case LOSING:
             {
-                drawLosing(&screenState);
+                drawLosing(&screen);
             }
             break;
 
@@ -60,7 +59,7 @@ int main(int argc, char const *argv[])
     }
     
     // removendo texturas
-    UnloadTexture(screenState.map1.map);
+    UnloadTexture(screen.map.map);
     CloseWindow();
     
     return 0;
