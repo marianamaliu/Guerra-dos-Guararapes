@@ -6,14 +6,22 @@
 #include <math.h>
 #include "scene.h"
 
+/*
+esse arquivo define a incialização dos mapas e texturas de uma cena
+
+*/
+
 void addScenes(Scene *scene)
 {
     scene->mapTexture[0] = LoadTexture("assets/image.png");
     scene->mapTexture[2] = LoadTexture("assets/island.animated.gif");
+    scene->mapTexture[3] = LoadTexture("assets/tela_ganhou.png");
+    scene->mapTexture[4] = LoadTexture("assets/tela_perdeu.png");
 }
 
 void DrawScene(Scene *scene)
 {
+    
     float screenWidth = (float)GetScreenWidth();
     float screenHeight = (float)GetScreenHeight();
     float mapWidth = (float)scene->mapTexture[scene->currentScreen].width;

@@ -24,6 +24,7 @@ screen iniciandoGame() {
 void drawMenu(screen *Sstate){
     BeginDrawing();
     DrawScene(&Sstate->map);
+    
 
     const char *instrucao = "Pressione ENTER para JOGAR";
     int fontSizeInstrucao = 20;
@@ -33,7 +34,7 @@ void drawMenu(screen *Sstate){
     int yInstrucao = Sstate->screenSizes.y / 2;
 
     DrawText(instrucao, xInstrucao, yInstrucao, fontSizeInstrucao, BLACK);
-    if (IsKeyDown(KEY_ENTER))
+    if (IsKeyPressed(KEY_ENTER))
     {
         //Talvez valha a pena fazer uma função somente para isso
         Sstate->currentScreen = GAMEPLAY;
@@ -51,12 +52,64 @@ void drawGameplay(screen *Sstate){
     BeginDrawing();
     DrawScene(&Sstate->map);
 
+    const char *instrucao = "Pressione ENTER para ganhar, DELETE para perder";
+    int fontSizeInstrucao = 20;
+
+    // 2. Centralização da Instrução:
+    int xInstrucao = Sstate->screenSizes.x / 2 - MeasureText(instrucao, fontSizeInstrucao) / 2;
+    int yInstrucao = Sstate->screenSizes.y / 2;
+
+    DrawText(instrucao, xInstrucao, yInstrucao, fontSizeInstrucao, BLACK);
+    if (IsKeyPressed(KEY_ENTER))
+    {
+        //Talvez valha a pena fazer uma função somente para isso
+        Sstate->currentScreen = WINNING;
+        Sstate->map.currentScreen = WINNING;
+    }
+    else if (IsKeyPressed(KEY_DELETE))
+    {
+        Sstate->currentScreen = LOSING;
+        Sstate->map.currentScreen = WINNING;
+    }
+
     EndDrawing();
 }
 void draWinning(screen *Sstate){
-    printf("draWinning");
+    BeginDrawing();
+    DrawScene(&Sstate->map);
+
+    const char *instrucao = "ENTER para voltar para o menu principal";
+    int fontSizeInstrucao = 20;
+
+    int xInstrucao = Sstate->screenSizes.x / 2 - MeasureText(instrucao, fontSizeInstrucao) / 2;
+    int yInstrucao = Sstate->screenSizes.y / 2;
+
+    DrawText(instrucao, xInstrucao, yInstrucao, fontSizeInstrucao, BLACK);
+    if (IsKeyPressed(KEY_ENTER))
+    {
+        Sstate->currentScreen = MENU;
+        Sstate->map.currentScreen = MENU;
+    }
+
+    EndDrawing();
 }
 void drawLosing(screen *Sstate){
-    printf("draw losing");
+    BeginDrawing();
+    DrawScene(&Sstate->map);
+
+    const char *instrucao = "ENTER para voltar para o menu principal";
+    int fontSizeInstrucao = 20;
+
+    int xInstrucao = Sstate->screenSizes.x / 2 - MeasureText(instrucao, fontSizeInstrucao) / 2;
+    int yInstrucao = Sstate->screenSizes.y / 2;
+
+    DrawText(instrucao, xInstrucao, yInstrucao, fontSizeInstrucao, BLACK);
+    if (IsKeyPressed(KEY_ENTER))
+    {
+        Sstate->currentScreen = MENU;
+        Sstate->map.currentScreen = MENU;
+    }
+
+    EndDrawing();
 }
 
