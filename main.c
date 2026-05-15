@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
     screen screen = iniciandoGame();
 
     // iniciando telas
-    InitScene(&screen.map, "assets/image.png");
+    addScenes(&screen.map);
 
     while (!WindowShouldClose())
     {
@@ -59,7 +59,7 @@ int main(int argc, char const *argv[])
     }
     
     // removendo texturas
-    UnloadTexture(screen.map.map);
+    UnloadTexture(screen.map.mapTexture[screen.currentScreen]);
     CloseWindow();
     
     return 0;

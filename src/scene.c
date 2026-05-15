@@ -6,17 +6,18 @@
 #include <math.h>
 #include "scene.h"
 
-void InitScene(Scene *scene, const char *imagePath)
+void addScenes(Scene *scene)
 {
-    scene->map[scene->currentMap] = LoadTexture(imagePath);
+    scene->mapTexture[0] = LoadTexture("assets/image.png");
+    scene->mapTexture[2] = LoadTexture("assets/island.animated.gif");
 }
 
 void DrawScene(Scene *scene)
 {
     float screenWidth = (float)GetScreenWidth();
     float screenHeight = (float)GetScreenHeight();
-    float mapWidth = (float)scene->map[scene->currentMap].width;
-    float mapHeight = (float)scene->map[scene->currentMap].height;
+    float mapWidth = (float)scene->mapTexture[scene->currentScreen].width;
+    float mapHeight = (float)scene->mapTexture[scene->currentScreen].height;
 
     float scaleX = screenWidth / mapWidth;
     float scaleY = screenHeight / mapHeight;
@@ -39,7 +40,7 @@ void DrawScene(Scene *scene)
         scaledHeight
     };
 
-    DrawTexturePro(scene->map[scene->currentMap], sourceRec, destRec, (Vector2){0, 0}, 0.0f, WHITE);
+    DrawTexturePro(scene->mapTexture[scene->currentScreen], sourceRec, destRec, (Vector2){0, 0}, 0.0f, WHITE);
 }
 
 // Define a posição do jogador no mapa de colisão a partir do mapa base
@@ -58,6 +59,6 @@ Vector2 ScreenToMapPosition(Scene *scene, Vector2 screenPos)
 
 void UnloadScene(Scene *scene)
 {
-    UnloadTexture(scene->map[scene->currentMap]);
+    UnloadTexture(scene->mapTexture[scene->currentScreen]);
     UnloadImage(scene->collision_image);
 }

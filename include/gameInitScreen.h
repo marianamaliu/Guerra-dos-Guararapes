@@ -9,6 +9,7 @@
 typedef struct {
     GameScreen currentScreen;
     Scene map;
+    Vector2 screenSizes;
     int cliques;
     bool showDebug;
 } screen;
