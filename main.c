@@ -1,17 +1,14 @@
 #include <raylib.h>
 #include "scene.h"
 #include "game.h"
-#include "enemy.h"
-#include "gameInitEntities.h"
-#include "gameInitScreen.h"
+#include "gameInitScreens.h"
 #include <math.h> // Para fminf
 #include <time.h>
 #include <float.h> // Necessário para DBL_MAX
 #include <string.h>
 #include <stdio.h>
 
-// Sempre que precisar compilar para gerar um novo executável com as alterações, o comando é:
-// gcc main.c src/*.c -I include -I /opt/homebrew/include -o blinky.exe -L /opt/homebrew/lib -lraylib -std=c99  
+// para compilar e executar rapidamente:  make clean && make && ./guararapes.exe
 
 int main(int argc, char const *argv[])
 {

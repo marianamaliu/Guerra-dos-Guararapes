@@ -1,8 +1,7 @@
 #include "game.h"
-#include "enemy.h"
 #include <raylib.h>
 #include <stdio.h>
-#include "gameInitScreen.h"
+#include "gameInitScreens.h"
 
 screen iniciandoGame() {
     screen configs;
